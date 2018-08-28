@@ -22,7 +22,7 @@
                 {{Lcoupon}}
             </button>
             <div v-if="money">
-                <button @click="nextpage">うどんを作る</button>
+                <button @click="nextpage()">うどんを作る</button>
             </div>
         </div>
         <div v-if="page === 2">
@@ -33,7 +33,7 @@
         <div v-if="page === 3">
             <img v-bind:src="selectudon.img">
             {{selectudon.name}}：{{selectudon.price}}円
-            <button @click="nextpage">コレニスル</button>
+            <button @click="nextpage()">コレニスル</button>
         </div>
         <div v-if="page === 4">いいうどんを！</div>
     </div>
