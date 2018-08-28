@@ -15,34 +15,25 @@
             </button>
         </div>
         <div v-if="page === 1">
-            <button @click="udon_page = 1 , page = 2">300</button><br>
-            <button @click="udon_page = 2 , page = 2">400</button><br>
-            <button @click="udon_page = 3 , page = 2">500</button>
+            <button v-for="Lmoney in moneylist" @click="money = Lmoney">
+                {{Lmoney}}
+            </button>
+            <button v-for="Lcoupon in couponlist" @click="coupon = Lcoupon">
+                {{Lcoupon}}
+            </button>
+            <button @click="page = 2">うどんを作る</button>
         </div>
         <div v-if="page === 2">
-            <h3>
-                <div v-if="udon_page === 1">
-                    bukkake!<br>
-                    hiyakake!<br>
-                    zaru-udon!
-                </div>
-                <div v-if="udon_page === 2">
-                    bukkake + kabocha-ten
-                </div>
-                <div v-if="udon_page === 3">
-                    bukkake + kashiwa-ten
-                </div>
-                <button @click="page = 3">
-                    <h1>
-                        コレニスル！
-                    </h1>
-                </button>
-            </h3>
+            <div v-for="Ludon in udonlist" @click="page = 3 , selectudon = Ludon">
+                {{Ludon}}
+            </div>
         </div>
         <div v-if="page === 3">
-            gooood!!!
+            {{selectudon}}
+            <button @click="page = 4">コレニスル</button>
         </div>
+        <div v-if="page === 4">いいうどんを！</div>
     </div>
     <script src="vue.js"></script>
 </body>
-</html>
+</html> 
