@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>page</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="udon">
+        <div v-if="page > 1">
+            <button @click="page = page - 1">
+                back page   
+            </button>
+        </div>
+        <div v-if="page === 1">
+            <button @click="udon_page = 1 , page = 2">300</button><br>
+            <button @click="udon_page = 2 , page = 2">400</button><br>
+            <button @click="udon_page = 3 , page = 2">500</button>
+        </div>
+        <div v-if="page === 2">
+            <h3>
+                <div v-if="udon_page === 1">
+                    bukkake!<br>
+                    hiyakake!<br>
+                    zaru-udon!
+                </div>
+                <div v-if="udon_page === 2">
+                    bukkake + kabocha-ten
+                </div>
+                <div v-if="udon_page === 3">
+                    bukkake + kashiwa-ten
+                </div>
+                <button @click="page = 3">
+                    <h1>
+                        コレニスル！
+                    </h1>
+                </button>
+            </h3>
+        </div>
+        <div v-if="page === 3">
+            gooood!!!
+        </div>
+    </div>
+    <script src="vue.js"></script>
+</body>
+</html>
