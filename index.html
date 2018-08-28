@@ -21,16 +21,19 @@
             <button v-for="Lcoupon in couponlist" @click="coupon = Lcoupon">
                 {{Lcoupon}}
             </button>
-            <button @click="page = 2">うどんを作る</button>
+            <div v-if="money">
+                <button @click="nextpage">うどんを作る</button>
+            </div>
         </div>
         <div v-if="page === 2">
-            <div v-for="Ludon in udonlist" @click="page = 3 , selectudon = Ludon">
-                {{Ludon}}
+            <div v-for="Ludon in udonlist" @click="nextpage() , selectudon = {name : Ludon.name , price : Ludon.price , img : Ludon.img}">
+                {{Ludon.name}}：{{Ludon.price}}円
             </div>
         </div>
         <div v-if="page === 3">
-            {{selectudon}}
-            <button @click="page = 4">コレニスル</button>
+            <img v-bind:src="selectudon.img">
+            {{selectudon.name}}：{{selectudon.price}}円
+            <button @click="nextpage">コレニスル</button>
         </div>
         <div v-if="page === 4">いいうどんを！</div>
     </div>
