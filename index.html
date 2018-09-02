@@ -26,7 +26,13 @@
             </div>
         </div>
         <div v-if="page === 2">
-            <div v-for="Ludon in udonlist" @click="nextpage() , selectudon = {name : Ludon.name , price : Ludon.price , img : Ludon.img}">
+            <div v-for="Ludon in udonnami" @click="nextpage() , selectudon = {name : Ludon.name , price : Ludon.price}">
+                {{Ludon.name}}：{{Ludon.price}}円
+            </div>
+            <div v-for="Ludon in udondai" @click="nextpage() , selectudon = {name : Ludon.name , price : Ludon.price}">
+                {{Ludon.name}}：{{Ludon.price}}円
+            </div>
+            <div v-for="Ludon in udontoku" @click="nextpage() , selectudon = {name : Ludon.name , price : Ludon.price}">
                 {{Ludon.name}}：{{Ludon.price}}円
             </div>
         </div>
