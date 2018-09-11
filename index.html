@@ -18,26 +18,47 @@
             <button v-for="Lmoney in moneylist" @click="money = Lmoney">
                 {{Lmoney}}
             </button>
-            <button v-for="Lcoupon in couponlist" @click="coupon = Lcoupon">
+            <button v-for="Lcoupon in couponlist" @click="coupon = {name : Lcoupon.name , price : Lcoupon.price , condition : Lcoupon.condition}">
                 {{Lcoupon.name}}
             </button>
             <div v-if="money">
-                <button @click="nextpage()">うどんを作る</button>
+                <button @click="nextpage(),disprice()">うどんを作る</button>
             </div>
         </div>
         <div v-if="page === 2">
-            <div v-if="coupon.name != NULL">
-                クーポンを使ったうどんリスト！
+            <button @click="decmoney()">減</button>
+            予算：{{money}}円
+            <button @click="incmoney()">増</button>
+            <div v-if="!coupon">
+                クーポンから
+                <div v-for="Ludon in couponsuggest" @click="nextpage() , selectudon = {name : Ludon.name , price : Ludon.price}">
+                        {{Ludon.name}}：{{Ludon.price}}円
+                </div>
             </div>
-            <div v-for="Ludon in udonnami" @click="nextpage() , selectudon = {name : Ludon.name , price : Ludon.price}">
-                {{Ludon.name}}：{{Ludon.price}}円
+            <div v-if="!toppingsuggest">
+                トッピングといっしょに
+                <div v-for="Ludon in toppingsuggest" @click="nextpage() , selectudon = {name : Ludon.name , price : Ludon.price, img : Ludon.img}">
+                        {{Ludon.name}}：{{Ludon.price}}円
+                </div>
             </div>
-            <div v-for="Ludon in udondai" @click="nextpage() , selectudon = {name : Ludon.name , price : Ludon.price}">
-                {{Ludon.name}}：{{Ludon.price}}円
+            <div v-if="udonsuggest.length != 0">
+                うどんのみ
+                <div v-for="Ludon in udonsuggest" @click="nextpage() , selectudon = {name : Ludon.name , price : Ludon.price, img : Ludon.img}">
+                        {{Ludon.name}}：{{Ludon.price}}円
+                </div>
             </div>
-            <div v-for="Ludon in udontoku" @click="nextpage() , selectudon = {name : Ludon.name , price : Ludon.price}">
-                {{Ludon.name}}：{{Ludon.price}}円
+            <div v-if="tempurasuggest.length != 0">
+                天ぷらといっしょに
+                <div v-for="Ludon in tempurasuggest" @click="nextpage() , selectudon = {name : Ludon.name , price : Ludon.price, img : Ludon.img}">
+                        {{Ludon.name}}：{{Ludon.price}}円
+                </div>
             </div>
+            <div v-if="othersuggest.length != 0">
+                    その他
+                    <div v-for="Ludon in othersuggest" @click="nextpage() , selectudon = {name : Ludon.name , price : Ludon.price, img : Ludon.img}">
+                            {{Ludon.name}}：{{Ludon.price}}円
+                    </div>
+                </div>
         </div>
         <div v-if="page === 3">
             <img v-bind:src="selectudon.img">
