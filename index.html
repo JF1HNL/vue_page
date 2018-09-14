@@ -35,7 +35,7 @@
                         {{Ludon.name}}：{{Ludon.price}}円
                 </div>
             </div>
-            <div v-if="!toppingsuggest">
+            <div v-if="toppingsuggest.length != 0">
                 トッピングといっしょに
                 <div v-for="Ludon in toppingsuggest" @click="nextpage() , selectudon = {name : Ludon.name , price : Ludon.price, img : Ludon.img}">
                         {{Ludon.name}}：{{Ludon.price}}円

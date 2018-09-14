@@ -5,8 +5,8 @@ let Field = new Vue({
           return this.udonlist.filter(item => item.nami < this.money && item.nami > this.money - 100)   
       },
       toppingsuggest : function(){
-        const tmp = this.udonlistfilter.filter(item => item.price < this.money -100 && item.price + (item.interval * 2) > this.money - 100).map( udon => {
-            return this.toppinglistfilter.filter(item => item.price < this.money - udon.price && item.price + (udon.interval * 2) > this.money - udon.price).map( topping => {
+        const tmp = this.udonlistfilter.filter(item => item.price < this.money -100 && item.price > this.money - 100 - (item.interval * 2)).map( udon => {
+            return this.toppinglistfilter.filter(item => item.price < this.money - udon.price && item.price > this.money - udon.price - (udon.interval * 2)).map( topping => {
                 if(this.money - (udon.interval * 2) > topping.price + udon.price){
                     return {
                         name : udon.name + '（得）と' + topping.name,
@@ -38,21 +38,21 @@ let Field = new Vue({
         return this.udonlistfilter.filter(item => item.price < this.money && item.price > this.money - (item.interval * 3)).map( it => {
             if(it.price < this.money && it.price > this.money - it.interval){
                 return {
-                    name : it.name,
+                    name : it.name + '（並）',
                     price : it.price,
                     img : it.img,
                     size : '並'
                 }
             }else if(it.price < this.money - it.interval && it.price > this.money - (it.interval * 2)){
                 return {
-                    name : it.name,
+                    name : it.name + '（大）',
                     price : it.price + it.interval,
                     img : it.img,
                     size : '大'
                 }
             }else if(it.price < this.money - (it.interval * 2) && it.price > this.money - (it.interval * 3)){
                 return {
-                    name : it.name,
+                    name : it.name + '（得）',
                     price : it.price + (it.interval * 2),
                     img : it.img,
                     size : '得'
@@ -169,7 +169,7 @@ let Field = new Vue({
                     }
                 })
                 this.tempuralistfilter = this.tempuralist;
-                this.toppinglisfilter = this.toppinglist;
+                this.toppinglistfilter = this.toppinglist;
                 this.otherlistfilter = this.otherlist;
             }else if(this.coupon.condition === '天'){
                 this.udonlistfilter = this.udonlist;
@@ -190,12 +190,12 @@ let Field = new Vue({
                         }
                     }
                 })
-                this.toppinglisfilter = this.toppinglist;
+                this.toppinglistfilter = this.toppinglist;
                 this.otherlistfilter = this.otherlist;
             }else if(this.coupon.condition === 'defalut'){
                 this.udonlistfilter = this.udonlist;
                 this.tempuralistfilter = this.tempuralist;
-                this.toppinglisfilter = this.toppinglist;
+                this.toppinglistfilter = this.toppinglist;
                 this.otherlistfilter = this.otherlist;
             }else{
                 this.udonlistfilter = this.udonlist;
