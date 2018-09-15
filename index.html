@@ -26,9 +26,9 @@
             </div>
         </div>
         <div v-if="page === 2">
-            <button @click="decmoney()">減</button>
+            <button @click="decmoney()">-100円</button>
             予算：{{money}}円
-            <button @click="incmoney()">増</button>
+            <button @click="incmoney()">+100円</button>
             <div v-if="!coupon">
                 クーポンから
                 <div v-for="Ludon in couponsuggest" @click="nextpage() , selectudon = {name : Ludon.name , price : Ludon.price , img : Ludon.img , status : Ludon.status , allergy : Ludon.allergy}">
