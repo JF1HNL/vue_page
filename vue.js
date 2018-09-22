@@ -9,7 +9,7 @@ let Field = new Vue({
             return this.toppinglistfilter.filter(item => item.price < this.money - udon.price && item.price > this.money - udon.price - (udon.interval * 2)).map( topping => {
                 if(this.money - (udon.interval * 2) > topping.price + udon.price){
                     return {
-                        name : udon.name + '（得）と' + topping.name,
+                        name : udon.name + 'と' + topping.name,
                         price : Number(udon.price) + Number(topping.price) + (udon.interval * 2),
                         img : udon.img,
                         size : '得',
@@ -18,7 +18,7 @@ let Field = new Vue({
                     }
                 }else if(this.money - udon.interval > topping.price + udon.price){
                     return {
-                        name : udon.name + '（大）と' + topping.name,
+                        name : udon.name + 'と' + topping.name,
                         price : Number(udon.price) + Number(topping.price) + udon.interval,
                         img : udon.img,
                         size : '大',
@@ -27,7 +27,7 @@ let Field = new Vue({
                     }
                 }else{
                     return {
-                        name : udon.name + '（並）と' + topping.name,
+                        name : udon.name + 'と' + topping.name,
                         price : Number(udon.price) + Number(topping.price),
                         img : udon.img,
                         size : '並',
@@ -47,7 +47,7 @@ let Field = new Vue({
         return this.udonlistfilter.filter(item => item.price < this.money && item.price > this.money - (item.interval * 3)).map( it => {
             if(it.price < this.money && it.price > this.money - it.interval){
                 return {
-                    name : it.name + '（並）',
+                    name : it.name,
                     price : it.price,
                     img : it.img,
                     size : '並',
@@ -56,7 +56,7 @@ let Field = new Vue({
                 }
             }else if(it.price < this.money - it.interval && it.price > this.money - (it.interval * 2)){
                 return {
-                    name : it.name + '（大）',
+                    name : it.name,
                     price : it.price + it.interval,
                     img : it.img,
                     size : '大',
@@ -65,7 +65,7 @@ let Field = new Vue({
                 }
             }else if(it.price < this.money - (it.interval * 2) && it.price > this.money - (it.interval * 3)){
                 return {
-                    name : it.name + '（得）',
+                    name : it.name,
                     price : it.price + (it.interval * 2),
                     img : it.img,
                     size : '得',
@@ -83,7 +83,7 @@ let Field = new Vue({
             return this.tempuralistfilter.filter(item => item.price < this.money - udon.price && item.price > this.money - udon.price -300).map( tempura => {
                 if(this.money - (udon.interval * 2) > tempura.price + udon.price){
                     return {
-                        name : udon.name + '（得）と' + tempura.name,
+                        name : udon.name + 'と' + tempura.name,
                         price : Number(udon.price) + Number(tempura.price) + (udon.interval * 2),
                         img : udon.img,
                         status : udon.status,
@@ -91,7 +91,7 @@ let Field = new Vue({
                     }
                 }else if(this.money - udon.interval > tempura.price + udon.price){
                     return {
-                        name : udon.name + '（大）と' + tempura.name,
+                        name : udon.name + 'と' + tempura.name,
                         price : Number(udon.price) + Number(tempura.price) + udon.interval,
                         img : udon.img,
                         status : udon.status,
@@ -99,7 +99,7 @@ let Field = new Vue({
                     }
                 }else{
                     return {
-                        name : udon.name + '（並）と' + tempura.name,
+                        name : udon.name + 'と' + tempura.name,
                         price : Number(udon.price) + Number(tempura.price),
                         img : udon.img,
                         status : udon.status,
@@ -137,7 +137,7 @@ let Field = new Vue({
         nextpage : function(){
             this.page = this.page + 1;
         },
-        disprice : function(){
+        use_coupon : function(){
             if(this.coupon.price === 'half'){
                 this.udonlistfilter = this.udonlist.map(it => {
                     if(it.name.indexOf(this.coupon.condition) === -1){
