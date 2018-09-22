@@ -9,20 +9,30 @@
 </head>
 <body>
     <div id="udon">
-        <div v-if="page > 1" class="backpage">
+        <div v-if="page > 1">
             <button @click="page = page - 1">
                 back page   
             </button>
         </div>
-        <div v-if="page === 1" class="page_1">
-            <button class="money_button" v-for="Lmoney in moneylist" @click="money = Lmoney">
-                {{Lmoney}}
-            </button>
-            <button class="coupon_button" v-for="Lcoupon in couponlist" @click="coupon = {name : Lcoupon.name , price : Lcoupon.price , condition : Lcoupon.condition}">
-                {{Lcoupon.name}}
-            </button>
+        <div v-if="page === 1">
+            <div class="group">
+                <div class="sub">予算</div>
+                <div class="blist list">
+                    <button class="money_button" v-for="Lmoney in moneylist" @click="money = Lmoney">
+                        {{Lmoney}}
+                    </button>
+                </div>
+            </div>
+            <div class="group">
+                <div class="sub">クーポン</div>
+                <div class="clist list">
+                    <button class="coupon_button" v-for="Lcoupon in couponlist" @click="coupon = {name : Lcoupon.name , price : Lcoupon.price , condition : Lcoupon.condition}">
+                        {{Lcoupon.name}}
+                    </button>
+                </div>
+            </div>
             <div v-if="money">
-                <button class="make_udon_button" @click="nextpage(),use_coupon()">うどんを作る</button>
+                <button class="decide" @click="nextpage(),use_coupon()">決定</button>
             </div>
         </div>
         <div v-if="page === 2" class="page_2">
